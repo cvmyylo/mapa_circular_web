@@ -17,7 +17,7 @@ export async function onRequest(context) {
     const basePath = SUBDOMAIN_ROUTES[sub];
     if (basePath && !url.pathname.startsWith(basePath + '/') && url.pathname !== basePath) {
       const rewrittenUrl = new URL(url.toString());
-      rewrittenUrl.pathname = url.pathname === '/' ? `${basePath}/index.html` : `${basePath}${url.pathname}`;
+      rewrittenUrl.pathname = url.pathname === '/' ? `${basePath}/` : `${basePath}${url.pathname}`;
       return context.env.ASSETS.fetch(new Request(rewrittenUrl.toString(), context.request));
     }
   }
